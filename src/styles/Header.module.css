@@ -1,0 +1,37 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#1a2d3f;
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav li {
+    cursor: pointer;
+  }
+  
+  .user {
+    font-size: 14px;
+  }
+  .supplyButton, .withdrawButton {
+    background-color: #1e88e5;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }

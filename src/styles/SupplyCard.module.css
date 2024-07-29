@@ -1,0 +1,48 @@
+.card {
+    background-color: #1a2d3f;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+  }
+  
+  .card h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .asset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .supplyActions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .supplyButton, .withdrawButton {
+    background-color: #1e88e5;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .withdrawButton {
+    background-color: #d32f2f;
+  }
+  
