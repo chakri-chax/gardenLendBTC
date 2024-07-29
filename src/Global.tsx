@@ -37,14 +37,12 @@ const getToken1 = async () => {
 const lendBTC = async (bytesBtcAdress: string, btcAmount: number, from: string) => {
     if (contract && btcAmount) {
         try {
-            console.log("contract interaction lending btc", bytesBtcAdress, btcAmount, from);
             const tx = await contract.lendBTC(bytesBtcAdress, btcAmount, from, { from: account })
             await tx.wait();
             console.log("tx", tx);
             toast.success('Lending BTC Successful');
             return 3;
         } catch (error) {
-            console.error('Error:', error);
             toast.error('Transaction Failed');
         }
     }
@@ -53,10 +51,8 @@ const lendBTC = async (bytesBtcAdress: string, btcAmount: number, from: string) 
 const withdrawBTC = async (bytesBtcAdress: string, btcAmount: number, from: string) => {
     if (contract && btcAmount ) {
         try {
-            console.log("contract interaction Withdrawing btc", bytesBtcAdress, btcAmount, from);
             const tx = await contract.withdrawBTC(bytesBtcAdress,from,btcAmount, { from: account })
             await tx.wait();
-            console.log("tx", tx);
             toast.success('Withdrawing BTC Successful');
             return 3;
         } catch (error) {
