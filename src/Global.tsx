@@ -25,7 +25,6 @@ const bitcoinWallet = BitcoinWallet.fromPrivateKey(
 );
 // eslint-disable-next-line react-refresh/only-export-components
 const BtcTestnetAddress = bitcoinWallet.getAddress();
-console.log("address",BtcTestnetAddress);
 const utf8ArrayBuffer = await stringToUtf8ArrayBuffer(await BtcTestnetAddress);
 const bytesBtcAdress =  arrayBufferToHex(utf8ArrayBuffer);
 const evmWallet = new EVMWallet(
@@ -45,7 +44,6 @@ function arrayBufferToHex(arrayBuffer = new ArrayBuffer(32)) {
 }
 function stringToUtf8ArrayBuffer(str = '') {
     const uint8Array = new TextEncoder().encode(str);
-    console.log(uint8Array.buffer);
     return uint8Array.buffer;
   }
 
