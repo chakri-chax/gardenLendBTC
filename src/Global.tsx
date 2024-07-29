@@ -18,11 +18,11 @@ const contractAddress = "0x55344B3DC124B733902D964E2e8A29d849bFf4a1";
 const bytesBtcAdress = '0x74623171683970766c6561686e65766464366b77667733347a663233797a6c6171716661736473703030'
 const usdtToken = '0x562409B4dffe2A925C2296b69C2bB27059986966'
 const bitcoinWallet = BitcoinWallet.fromPrivateKey(
-    '4bb0869130210760a45d8e09b8db6ac2ad3711a264a8920ff6e9b61b9a002fd9',
+    'BTC_Testnet_PrivateKey',
     new BitcoinProvider(BitcoinNetwork.Testnet)
 );
 const evmWallet = new EVMWallet(
-    new Wallet('63c91e9b88182c6daddfa3c4c739e72bd542f47e90125eee43f16d584747e7e0', new JsonRpcProvider('https://sepolia.infura.io/v3/e427baed8ae44e6ba79e542b53c0a524'))
+    new Wallet('ETH_Sepolia_PrivateKey', new JsonRpcProvider('https://sepolia.infura.io/v3/e427baed8ae44e6ba79e542b53c0a524'))
 );
 const signer = evmWallet.getSigner();
 const account = await signer.getAddress();
