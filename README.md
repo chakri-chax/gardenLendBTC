@@ -39,11 +39,13 @@ Users can repay their USDT debt through the component.
 
 1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/chakri-chax/gardenLendBTC.git
+   cd gardenLendBTC
    bun install
-   Configure Private Keys
+  Configure Private Keys
    Replace your BTC Testnet private key and EVM Sepolia private key in ./Global.tsx.
+
+   ```bash
    bun run dev
 
 
