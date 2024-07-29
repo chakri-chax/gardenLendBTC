@@ -12,28 +12,44 @@ import {
 import {toast} from 'react-toastify';
 import { GardenJS } from '@gardenfi/core';
 import { ethers, JsonRpcProvider, Wallet } from 'ethers';
+const usdtToken = '0x562409B4dffe2A925C2296b69C2bB27059986966'
 import ABI from '../src/components/ABI/LendingBorrowing.json'
 const contractAddress = "0x55344B3DC124B733902D964E2e8A29d849bFf4a1";
-// const btcAddress = "tb1qh9pvleahnevdd6kwfw34zf23yzlaqqfasdsp00"
-const bytesBtcAdress = '0x74623171683970766c6561686e65766464366b77667733347a663233797a6c6171716661736473703030'
-const usdtToken = '0x562409B4dffe2A925C2296b69C2bB27059986966'
+const BTC_Testnet_PrivateKey = 'REPLACE_WITH_YOUR_PRIVATE_KEY';
+const ETH_Sepolia_PrivateKey = 'REPLACE_WITH_YOUR_PRIVATE_KEY';
+
+
 const bitcoinWallet = BitcoinWallet.fromPrivateKey(
-    'BTC_Testnet_PrivateKey',
+    BTC_Testnet_PrivateKey,
     new BitcoinProvider(BitcoinNetwork.Testnet)
 );
+// eslint-disable-next-line react-refresh/only-export-components
+const BtcTestnetAddress = bitcoinWallet.getAddress();
+console.log("address",BtcTestnetAddress);
+const utf8ArrayBuffer = await stringToUtf8ArrayBuffer(await BtcTestnetAddress);
+const bytesBtcAdress =  arrayBufferToHex(utf8ArrayBuffer);
 const evmWallet = new EVMWallet(
-    new Wallet('ETH_Sepolia_PrivateKey', new JsonRpcProvider('https://sepolia.infura.io/v3/e427baed8ae44e6ba79e542b53c0a524'))
+    new Wallet(ETH_Sepolia_PrivateKey, new JsonRpcProvider('https://sepolia.infura.io/v3/e427baed8ae44e6ba79e542b53c0a524'))
 );
+
 const signer = evmWallet.getSigner();
 const account = await signer.getAddress();
 const contract = new ethers.Contract(contractAddress, ABI, evmWallet.getSigner());
-const getToken1 = async () => {
-    if (!contract) {
-        return;
+function arrayBufferToHex(arrayBuffer = new ArrayBuffer(32)) {
+    const uint8Array = new Uint8Array(arrayBuffer);
+    let hexString = '0x';
+    for (let i = 0; i < uint8Array.length; i++) {
+        hexString += uint8Array[i].toString(16).padStart(2, '0');
     }
-    const token1 = await contract.token1();
-    return token1;
-};
+    return hexString;
+}
+function stringToUtf8ArrayBuffer(str = '') {
+    const uint8Array = new TextEncoder().encode(str);
+    console.log(uint8Array.buffer);
+    return uint8Array.buffer;
+  }
+
+
 const lendBTC = async (bytesBtcAdress: string, btcAmount: number, from: string) => {
     if (contract && btcAmount) {
         try {
@@ -101,5 +117,5 @@ function truncateAddress(address: string, startLength = 6, endLength = 4) {
     return `${address.substring(0, startLength)}...${address.substring(address.length - endLength)}`;
 }
 export {
-    garden, evmWallet, getRecentOrders, getToken1, lendBTC, bytesBtcAdress, bitcoinWallet, contract, getBtcBal, truncateAddress, usdtToken,contractAddress,withdrawBTC
+    garden, evmWallet, getRecentOrders, lendBTC, bytesBtcAdress, bitcoinWallet, contract, getBtcBal, truncateAddress, usdtToken,contractAddress,withdrawBTC
 }
